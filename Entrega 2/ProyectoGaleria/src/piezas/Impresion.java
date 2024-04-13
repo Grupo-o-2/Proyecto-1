@@ -1,6 +1,6 @@
 package piezas;
 import java.util.ArrayList;
-import 
+import usuarios.*;
 
 public class Impresion extends Pieza{
 	private int alto;

@@ -1,8 +1,7 @@
 package modelo;
 
 import java.util.*;
-
-
+import usuarios.*;
 import piezas.Pieza;
 
 public class Galeria {

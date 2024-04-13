@@ -1,5 +1,6 @@
 package piezas;
 import java.util.ArrayList;
+import usuarios.*;
 
 public class Video extends Pieza {
 	private int alto;

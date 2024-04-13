@@ -1,7 +1,8 @@
 package usuarios;
 import java.util.ArrayList;
+import piezas.*;
 
-public class Usuario {
+public abstract class Usuario {
 	private String login;
 	private String password;
 	private int dinero;

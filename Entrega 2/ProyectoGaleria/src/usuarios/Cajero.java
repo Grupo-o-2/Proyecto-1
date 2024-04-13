@@ -1,5 +1,6 @@
 package usuarios;
 import java.util.ArrayList;
+import piezas.*;
 
 public class Cajero extends Empleado {
 

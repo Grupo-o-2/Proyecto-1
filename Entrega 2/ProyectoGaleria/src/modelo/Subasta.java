@@ -1,8 +1,8 @@
 package modelo;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import piezas.Pieza;
+import usuarios.*;
+import piezas.*;
 
 public class Subasta {
 	private ArrayList<Usuario> participantes;
