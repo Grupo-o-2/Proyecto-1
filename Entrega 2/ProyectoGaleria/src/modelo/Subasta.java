@@ -4,6 +4,8 @@ import java.util.HashMap;
 import usuarios.*;
 import piezas.*;
 
+import piezas.Pieza;
+
 public class Subasta {
 	private ArrayList<Usuario> participantes;
 	private Usuario operador;

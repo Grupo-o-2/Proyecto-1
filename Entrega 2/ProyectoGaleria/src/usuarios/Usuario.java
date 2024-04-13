@@ -1,28 +1,40 @@
 package usuarios;
 import java.util.ArrayList;
+import modelo.*;
 import piezas.*;
 
-public abstract class Usuario {
+
+public class Usuario {
 	private String login;
 	private String password;
-	private int dinero;
-	private int telefono;
 	private String nombre;
-	private int valorMaximoCompras;
-	private ArrayList<Pieza> historialPiezas;
-	private ArrayList<Pieza> piezasActuales;
+
 	
 
 	
-public Usuario(String login, String password, int dinero, int telefono, String nombre, int valorMaximoCompras, ArrayList<Pieza> historialPiezas, ArrayList<Pieza> piezasActuales ) {	
-	this.login = login;
+public Usuario(String login, String password, String nombre) {
 	this.password = password;
-	this.dinero = dinero;
-	this.telefono = telefono;
 	this.nombre = nombre;
-	this.valorMaximoCompras = valorMaximoCompras;
-	this.historialPiezas = historialPiezas;
-	this.piezasActuales = piezasActuales;
 
 }
+
+
+
+ public String getLogin() {
+	return login;
 }
+
+
+
+public String getPassword() {
+	return password;
+}
+
+
+public String getNombre() {
+	return nombre;
+}
+
+}
+
+

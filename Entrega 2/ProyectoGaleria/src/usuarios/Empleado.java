@@ -1,12 +1,15 @@
 package usuarios;
 import java.util.ArrayList;
+import modelo.*;
 import piezas.*;
 
-public class Empleado extends Usuario{
 
-	public Empleado(String login, String password, int dinero, int telefono, String nombre, int valorMaximoCompras,
-			ArrayList<Pieza> historialPiezas, ArrayList<Pieza> piezasActuales) {
-		super(login, password, dinero, telefono, nombre, valorMaximoCompras, historialPiezas, piezasActuales);
+public class Empleado extends Usuario{
+	
+	private int telefono;
+	
+	public Empleado(String login, String password, int telefono, String nombre) {
+		super(login, password,  nombre);
 		// TODO Auto-generated constructor stub
 	}
 
