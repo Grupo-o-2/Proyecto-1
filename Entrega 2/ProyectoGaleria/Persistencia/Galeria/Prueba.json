@@ -1,0 +1,103 @@
+{
+  "Usuarios": [
+    {
+      "Nombre": "Pepe",
+      "Piezas Actuales": ",0,2",
+      "Historial Piezas": "0,2,",
+      "Tipo": "Comprador",
+      "Telefono": 1234567890,
+      "Login": "el pepe",
+      "Dinero": 0,
+      "Valor Maximo Compras": 200,
+      "Password": "hola123"
+    },
+    {
+      "Nombre": "KS",
+      "Piezas Actuales": ",1,3",
+      "Historial Piezas": "1,3,",
+      "Tipo": "Comprador",
+      "Telefono": 673247890,
+      "Login": "Kanye Swift",
+      "Dinero": 100000,
+      "Valor Maximo Compras": 20000,
+      "Password": "MisstheoldKanye"
+    },
+    {
+      "Nombre": "Swifties",
+      "Piezas Actuales": "Vacío",
+      "Historial Piezas": "Vacío",
+      "Tipo": "Comprador",
+      "Telefono": 10247890,
+      "Login": "Taylor West",
+      "Dinero": 100,
+      "Valor Maximo Compras": 2000000,
+      "Password": "Antihero"
+    }
+  ],
+  "Piezas": [
+    {
+      "Proprietario": "el pepe",
+      "Autores": "Tilin Insano, Dame tu cosita",
+      "Lugar": "Puerto Rico",
+      "Consignacion": false,
+      "Titulo": "Top 5 dame tu cosita captados en cámara",
+      "Valor": 2000,
+      "Exhiba venda o subasta": "1",
+      "Formato": ".mp4",
+      "Exhibida": false,
+      "Tipo": "Video",
+      "Duracion": 152,
+      "Alto": 1920,
+      "Ancho": 1080,
+      "Identificador": "0",
+      "Año": 2018
+    },
+    {
+      "Proprietario": "Kanye Swift",
+      "Autores": "Lady Gaga",
+      "Lugar": "West Coast",
+      "Enmarcado": true,
+      "Consignacion": false,
+      "Titulo": "Soy un Dios",
+      "Valor": 2000000,
+      "Exhiba venda o subasta": "1",
+      "Formato": ".jpg",
+      "Exhibida": false,
+      "Tipo": "Fotografia",
+      "Alto": 1080,
+      "Ancho": 1920,
+      "Identificador": "1",
+      "Año": 2016
+    },
+    {
+      "Proprietario": "el pepe",
+      "Autores": "Jean Calude Van Damme",
+      "Lugar": "West Coast",
+      "Consignacion": false,
+      "Titulo": "Famous",
+      "Valor": 2000000,
+      "Exhiba venda o subasta": "1",
+      "Exhibida": false,
+      "Tipo": "Pintura",
+      "Alto": 1920,
+      "Ancho": 1080,
+      "Identificador": "2",
+      "Año": 2016
+    },
+    {
+      "Proprietario": "Kanye Swift",
+      "Autores": "Epson",
+      "Lugar": "Bogotá",
+      "Consignacion": false,
+      "Titulo": "Tarea",
+      "Valor": 1,
+      "Exhiba venda o subasta": "1",
+      "Exhibida": false,
+      "Tipo": "Impresion",
+      "Alto": 1920,
+      "Ancho": 1080,
+      "Identificador": "3",
+      "Año": 2024
+    }
+  ]
+}
