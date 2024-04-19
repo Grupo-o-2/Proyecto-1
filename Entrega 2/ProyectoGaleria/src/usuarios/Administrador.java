@@ -4,6 +4,8 @@ import modelo.*;
 import piezas.*;
 
 public class Administrador extends Empleado{
+	
+	private String tipo = "Administrador";
 
 	public Administrador(String login, String password, int telefono, String nombre) {
 		super(login, password, telefono, nombre);
@@ -22,9 +24,6 @@ public class Administrador extends Empleado{
  public void devoluciondePiezas(Pieza pieza, Galeria galeria, Usuario usuario ) {
 	galeria.getPiezasActuales().remove(pieza);
 	galeria.getPiezasAntiguas().add(pieza);
-	pieza.setPropietarioActual(usuario);
-	
-	
 }
 	
  public boolean verificacionDeCompra(Pieza pieza, Usuario comprador, Galeria galeria) {
@@ -38,5 +37,10 @@ public class Administrador extends Empleado{
 	return verificado;
 	
 }
+ 
+ public String getTipo() {
+		
+		return this.tipo;
+	}
 
 }

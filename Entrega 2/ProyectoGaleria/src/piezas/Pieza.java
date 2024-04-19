@@ -10,26 +10,44 @@ abstract public class Pieza {
 	private String titulo;
 	private int año;
 	private String lugar;
-	private ArrayList<String> autores;
+	private String autores;
 	private boolean exhibida;
 	private int valor;
-	private Usuario propietarioOriginal;
-	private Usuario propietarioActual;
+	private Usuario propietario;
 	public String EXHIBA = "1";
 	public String VENTA = "2";
 	public String SUBASTA = "3";
-	private String exhibaVendaoSubasta;
+	private String exhibaVendaoSubasta;	
+	private boolean consignacion = false;
 	
+	
+	public boolean isConsignacion() {
+		return consignacion;
+	}
 
-public Pieza(String titulo, int año, int valor, String lugar, ArrayList<String> autores, boolean exhibida, Usuario propietarioActual, Usuario propietarioOriginal,  String exhibaVendaoSubasta) {
+
+	public void setConsignacion(boolean consignacion) {
+		this.consignacion = consignacion;
+	}
+		
+	public void setValor(int valor) {
+		this.valor = valor;
+	}
+
+
+	public void setPropietario(Usuario propietario) {
+		this.propietario = propietario;
+	}
+
+public Pieza(String titulo, int año, int valor, String lugar, String autores, boolean exhibida, Usuario propietario,  String exhibaVendaoSubasta, boolean consignacion) {
 	this.titulo = titulo;
 	this.año = año;
 	this.lugar = lugar;
 	this.valor = valor;
 	this.autores = autores;
-	this.propietarioActual = propietarioActual;
-	this.propietarioOriginal = propietarioOriginal;
+	this.propietario = propietario;
 	this.exhibaVendaoSubasta = exhibaVendaoSubasta;
+	this.consignacion = consignacion; 
 }
 
 
@@ -66,12 +84,12 @@ public void setLugar(String lugar) {
 }
 
 
-public ArrayList<String> getAutores() {
+public String getAutores() {
 	return autores;
 }
 
 
-public void setAutores(ArrayList<String> autores) {
+public void setAutores(String autores) {
 	this.autores = autores;
 }
 
@@ -85,18 +103,12 @@ public void setExhibida(boolean exhibida) {
 	this.exhibida = exhibida;
 }
 
-
-public Usuario getPropietarioActual() {
-	return propietarioActual;
+public boolean getExhibida() {
+	return this.exhibida;
 }
 
-
-public void setPropietarioActual(Usuario propietario) {
-	this.propietarioActual = propietario;
-}
-
-public Usuario getPropietarioOriginal() {
-	return propietarioOriginal;
+public Usuario getPropietario() {
+	return propietario;
 }
 
 
@@ -108,5 +120,7 @@ public String getExhibaVendaoSubasta() {
 public void setExhibaVendaoSubasta(String exhibaVendaoSubasta) {
 	this.exhibaVendaoSubasta = exhibaVendaoSubasta;
 }
+
+public abstract String getTipo();
 
 }

@@ -1,20 +1,18 @@
 package usuarios;
-import java.util.ArrayList;
-import modelo.*;
-import piezas.*;
 
-
-public class Usuario {
+abstract public class Usuario {
 	private String login;
 	private String password;
 	private String nombre;
+	private int telefono;
 
 	
-
 	
-public Usuario(String login, String password, String nombre) {
+public Usuario(String login, String password, String nombre, int telefono) {
+	this.login = login;
 	this.password = password;
 	this.nombre = nombre;
+	this.telefono = telefono;
 
 }
 
@@ -34,6 +32,13 @@ public String getPassword() {
 public String getNombre() {
 	return nombre;
 }
+
+public int getTelefono() {
+	
+	return this.telefono;
+} 
+
+public abstract String getTipo();
 
 }
 

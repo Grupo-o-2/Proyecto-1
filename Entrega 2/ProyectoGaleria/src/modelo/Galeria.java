@@ -1,19 +1,31 @@
 package modelo;
 
-import java.util.*;
-
+import java.util.*; 
+import fabrica.*;
 import piezas.*;
 import usuarios.*;
+import exceptions.*;
 
 public class Galeria {
 
 	private String nombre;
 	private ArrayList<Subasta> subastas;
-	private ArrayList<Pieza> historialPiezas;
-	private ArrayList<Pieza> piezasActuales;
-	private ArrayList<Pieza> piezasAntiguas;
-	private ArrayList<Usuario> usuarios;
+	private ArrayList<Pieza> historialPiezas = new ArrayList<Pieza>();
+	private ArrayList<Pieza> piezasActuales = new ArrayList<Pieza>();
+	private ArrayList<Pieza> piezasAntiguas = new ArrayList<Pieza>();
+	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+	private Fabrica fabrica = new Fabrica();
 
+	public Galeria(String nombre, ArrayList<Subasta> subastas, ArrayList<Pieza> historialPiezas,
+			ArrayList<Pieza> piezasActuales, ArrayList<Pieza> piezasAntiguas, ArrayList<Usuario> usuarios )
+	{
+		this.nombre = nombre;
+		this.subastas = subastas;
+		this.historialPiezas = historialPiezas;
+		this.piezasActuales = piezasActuales;
+		this.piezasAntiguas = piezasAntiguas;
+	}
+	
 	
 	public ArrayList<Pieza> obtenerPiezasEnBodega (){
 		
@@ -63,6 +75,10 @@ public class Galeria {
 		return usuarios;
 	}
 	
+	public Fabrica getFabrica() {
+		return this.fabrica;
+	}
+	
 	public boolean verificarUsuario(Usuario usuarioAVerificar) {
 		
 		boolean verificado = false;
@@ -76,7 +92,28 @@ public class Galeria {
 		return verificado;
 	}
 	
+	public void agregarUsuario(Usuario usuario) {
+		this.usuarios.add(usuario);
+	}
 	
+	public void crearComprador(String login, String password,  String nombre, int valorMaximoCompras,
+			ArrayList<Pieza> historialPiezas, ArrayList<Pieza> piezasActuales, int dinero, int telefono, Galeria galeria ) throws LoginException
+	{
+		getFabrica().crearComprador(login, password, nombre, valorMaximoCompras, historialPiezas, piezasActuales, dinero, telefono, galeria);
+	}
+	public void cargarGaleria(String archivo)
+	{
+		try
+		{
+			getFabrica().cargarGaleria(archivo, this);
+		}
+		catch (Exception e)
+		{
+			
+		}
+	}
+	
+// ¡Crear usuario! y pieza. 
 
 
 

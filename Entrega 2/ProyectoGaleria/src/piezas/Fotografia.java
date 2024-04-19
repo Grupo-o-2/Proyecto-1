@@ -5,17 +5,40 @@ import modelo.*;
 import usuarios.*;
 
 public class Fotografia extends Pieza{
-	private int ancho;
 	private int alto;
+	private int ancho;
 	private String formato;
 	private boolean enmarcado;
+	private String tipo = "Fotografia";
 	
-	public Fotografia(String titulo, int año, int valor, String lugar, ArrayList<String> autores, boolean exhibida,
-			Usuario propietarioActual, Usuario propietarioOriginal, String exhibaVendaoSubasta) {
-		super(titulo, año, valor, lugar, autores, exhibida, propietarioActual, propietarioOriginal, exhibaVendaoSubasta);
-		// TODO Auto-generated constructor stub
+	public Fotografia(String titulo, int año, int valor, String lugar, String autores, boolean exhibida,
+			Usuario propietario, String exhibaVendaoSubasta, int ancho, int alto, String formato, boolean enmarcado, boolean consignacion) {
+		super(titulo, año, valor, lugar, autores, exhibida, propietario, exhibaVendaoSubasta, consignacion);
+		this.alto = alto;
+		this.ancho = ancho;
+		this.formato = formato;
+		this.enmarcado = enmarcado;
+	}
+	
+	public int getAlto() {
+		return alto;
 	}
 
-	
+	public int getAncho() {
+		return ancho;
+	}
+
+	public String getFormato() {
+		return formato;
+	}
+
+	public boolean isEnmarcado() {
+		return enmarcado;
+	}
+
+	public String getTipo() {
+		
+		return this.tipo;
+	}	
 
 }
