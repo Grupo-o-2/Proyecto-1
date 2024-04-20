@@ -79,17 +79,16 @@ public class Galeria {
 		return this.fabrica;
 	}
 	
-	public boolean verificarUsuario(Usuario usuarioAVerificar) {
+	public boolean verificarUsuario(Usuario usuarioAVerificar) throws UsuarioInexistenteException {
 		
-		boolean verificado = false;
-		
-		for (Usuario usuario: this.usuarios )
-		{
-			if ( usuarioAVerificar.getLogin() == usuario.getLogin() ){
-				verificado = true;}
+		if ((this.usuarios.contains(usuarioAVerificar)) == false ) {
+			
+			throw new UsuarioInexistenteException(usuarioAVerificar.getNombre());
+		}
+		else {
+			return true;
 		}
 		
-		return verificado;
 	}
 	
 	public void agregarUsuario(Usuario usuario) {
@@ -109,15 +108,64 @@ public class Galeria {
 		}
 		catch (Exception e)
 		{
-			
 		}
 	}
 	
 // ¡Crear usuario! y pieza. 
 
-
-
-
+	public Usuario getAdministrador() {
+		Usuario administrador = null;
+		for ( Usuario usuario : this.usuarios) {
+			if (usuario.getTipo() == "Administrador") {
+				administrador = usuario;}
+		}
+		return administrador;
+	}
+	
+	
+	public Usuario getUnCajero() {
+		
+		Usuario cajero = null;
+		for ( Usuario usuario : this.usuarios) {
+			if (usuario.getTipo() == "Cajero") {
+				cajero = usuario;}
+		}
+		return cajero;
+	}
+	
+	public Usuario getUnOperador() {
+		
+		Usuario operador = null;
+		for ( Usuario usuario : this.usuarios) {
+			if (usuario.getTipo() == "Operador") {
+				operador = usuario;}
+		}
+		return operador;
+	}
+	
+	
+	public void realizarConsignacion(Usuario propietario, Pieza piezaAConsignar, String fechaLimite, Galeria galeria, String exhibaVendaoSubasta) throws PropietarioErroneoException {
+		
+		((Administrador )this.getAdministrador()).registrarPiezaPorConsignacion(propietario, piezaAConsignar, fechaLimite, this, exhibaVendaoSubasta);
+		
+	}
+	
+	public void crearSubasta(ArrayList<Usuario> participantes, Usuario operador, HashMap<Pieza,HashMap<Usuario, 
+		Integer>> registroSubasta, HashMap<Pieza, ArrayList<Integer>> piezasSubastadas) throws UsuarioInexistenteException {
+		
+		if (  ((Administrador )this.getAdministrador()).verificarUsuariosSubasta(participantes, this) == true  ) {
+			
+			Subasta nuevaSubasta = new Subasta(participantes, operador, registroSubasta, piezasSubastadas);
+			this.subastas.add(nuevaSubasta);
+			
+		}
+	}
+	
+	public void finalizarSubasta(Subasta subasta)  {
+		
+		subasta.finalizarSubasta(this);
+	}
+	
 }
 	
 	

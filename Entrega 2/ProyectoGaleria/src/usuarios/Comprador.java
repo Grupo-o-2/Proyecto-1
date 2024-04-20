@@ -1,7 +1,12 @@
 package usuarios;
 
 import java.util.ArrayList;
-import piezas.Pieza;
+
+import java.util.*; 
+import fabrica.*;
+import piezas.*;
+import modelo.*;
+import exceptions.*;
 
 public class Comprador extends Usuario{
 	
@@ -49,19 +54,43 @@ public class Comprador extends Usuario{
 		return dinero;
 	}
 	
+	public void setDinero(int dinero) {
+		this.dinero = dinero;
+	}
+	
 	public String getTipo() {
-		
 		return this.tipo;
 	}
 	
-	public void añadirPieza(Pieza pieza)
-	{
+	public  String revisarEstadoPieza( Pieza pieza) {
+		String estado = null;
+		if (pieza.isExhibida() == true) {
+			estado = "La pieza se encuentra exhibida";
+		}
+		else {
+			estado = "La pieza se encuentra en bodega";
+		}
+		return estado;
+	}
+	
+	public void añadirPieza(Pieza pieza){
 		this.historialPiezas.add(pieza);
 		this.piezasActuales.add(pieza);
 	}
 	
-	public void añadirPiezaHistorial(Pieza pieza)
-	{
+	public void añadirPiezaHistorial(Pieza pieza){
 		this.historialPiezas.add(pieza);
+	}
+	
+	public void consignarPieza(Pieza piezaAConsignar, String fechaLimite, Galeria galeria, String exhibaVendaoSubasta ) throws PropietarioErroneoException {
+			galeria.realizarConsignacion(this, piezaAConsignar, fechaLimite, galeria, exhibaVendaoSubasta);	
+	}
+	
+	public void comprarPieza(Pieza piezaAcomprar, Galeria galeria) throws UsuarioInexistenteException, DineroInsuficienteException, VentaImposibleException {
+		((Cajero)galeria.getUnCajero()).venderPieza(this, piezaAcomprar, galeria);
+	}
+	
+	public void realizarOfertaEnSubasta(Pieza piezaSubastada, int valorOfertado, Subasta subasta ) throws DineroOfrecidoInsuficienteException, DineroInsuficienteException {
+		( (Operador )subasta.getOperador() ).registrarOferta(valorOfertado, piezaSubastada, this, subasta);
 	}
 }

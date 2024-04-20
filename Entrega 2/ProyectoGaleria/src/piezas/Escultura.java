@@ -42,10 +42,10 @@ public class Escultura extends Pieza {
 		return otroDetalle;
 	}
 
-	public Escultura(String titulo, int año, int valor, String lugar,String autores, boolean exhibida,
+	public Escultura(String titulo, int año, int valor, String lugar,String autores, boolean exhibida, boolean dispventa, String fecha,
 			Usuario propietario, String exhibaVendaoSubasta, int alto, int ancho, 
-			int profundidad, String materiales, int peso, boolean electricidad, boolean otroDetalle, boolean consignacion) {
-		super(titulo, año, valor, lugar, autores, exhibida, propietario, exhibaVendaoSubasta, consignacion);
+			int profundidad, String materiales, int peso, boolean electricidad, boolean otroDetalle, boolean consignacion, boolean dispsubasta) {
+		super(titulo, año, valor, lugar, autores, exhibida, propietario, exhibaVendaoSubasta, consignacion,fecha, dispsubasta,dispventa);
 		this.alto = alto;
 		this.ancho = ancho;
 		this.profundidad = profundidad;
@@ -56,7 +56,6 @@ public class Escultura extends Pieza {
 	}
 	
 	public String getTipo() {
-		
 		return this.tipo;
 	}
 }

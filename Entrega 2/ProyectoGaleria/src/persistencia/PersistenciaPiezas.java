@@ -187,26 +187,6 @@ public class PersistenciaPiezas {
 		jEsculturas.put( jEscultura );
 	}
 
-
-		
-	public void salvarCompradorSinPiezas(Comprador comprador, JSONArray jCompradores)
-	{
-		JSONObject jComprador = new JSONObject( );
-		jComprador.put( "Login", comprador.getLogin() );
-		jComprador.put( "Password", comprador.getPassword() );
-		jComprador.put( "Nombre", comprador.getNombre( ) );
-		jComprador.put( "Dinero", comprador.getDinero( ) );
-		jComprador.put( "Telefono", comprador.getTelefono() );
-		jComprador.put( "Valor Maximo Compras", comprador.getValorMaximoCompras( ) );
-		String historialPiezas = "Vacío";
-		jComprador.put( "Historial Piezas", historialPiezas);
-		String piezasActuales = "Vacío";
-		jComprador.put( "Piezas Actuales", piezasActuales );
-		jComprador.put( "Tipo", comprador.getTipo( ) );
-
-		jCompradores.put( jComprador );
-	}
-
 	public void cargarPiezas(JSONArray jPiezas, Galeria galeria, HashMap<String, Comprador> loginCompradores, HashMap<String, Pieza> identificacionPieza) throws LoginInexistenteException
 	{ 
 		int numeroPiezas = jPiezas.length();
@@ -260,7 +240,7 @@ public class PersistenciaPiezas {
 		boolean nElectricidad = jEscultura.getBoolean("Electricidad");
 		boolean nOtroDetalle = jEscultura.getBoolean("Otro detalle");
 		boolean nConsignacion = jEscultura.getBoolean("Consignacion");
-		Escultura escultura = galeria.getFabrica().crearEscultura(nTitulo, nAño, nValor, nLugar, nAutores, nExhibida, nPropietario, nExhibaVendaoSubaste, nAlto, nAancho, nProfundidad, nMateriales, nPeso, nElectricidad, nOtroDetalle, nConsignacion);
+		Escultura escultura = galeria.getFabrica().crearEscultura(nTitulo, nAño, nValor, nLugar, nAutores, nExhibida, nPropietario, nExhibaVendaoSubaste, nAlto, nAancho, nProfundidad, nMateriales, nPeso, nElectricidad, nOtroDetalle, nConsignacion, true, false, "20/09/2024");
 		identificacionPieza.put(jEscultura.getString("Identificador"), escultura);
 	}
 
@@ -284,7 +264,7 @@ public class PersistenciaPiezas {
 		String nFormato = jFotografia.getString("Formato");
 		boolean nEnmarcado = jFotografia.getBoolean("Enmarcado");
 		boolean nConsignacion = jFotografia.getBoolean("Consignacion");
-		Fotografia fotografia = galeria.getFabrica().crearFotografia(nTitulo, nAño, nValor, nLugar, nAutores, nExhibida, nPropietario, nExhibaVendaoSubaste, nAlto, nAancho, nFormato, nEnmarcado, nConsignacion);
+		Fotografia fotografia = galeria.getFabrica().crearFotografia(nTitulo, nAño, nValor, nLugar, nAutores, nExhibida, nPropietario, nExhibaVendaoSubaste, nAlto, nAancho, nFormato, nEnmarcado, nConsignacion, true, false, "20/09/2024");
 		identificacionPieza.put(jFotografia.getString("Identificador"), fotografia);
 
 	}
@@ -307,7 +287,7 @@ public class PersistenciaPiezas {
 		int nAlto = jImpresion.getInt("Alto");
 		int nAncho = jImpresion.getInt("Ancho");
 		boolean nConsignacion = jImpresion.getBoolean("Consignacion");
-		Impresion impresion = galeria.getFabrica().crearImpresion(nTitulo, nAño, nValor, nLugar, nAutores, nExhibida, nPropietario, nExhibaVendaoSubaste, nAncho, nAlto, nConsignacion);
+		Impresion impresion = galeria.getFabrica().crearImpresion(nTitulo, nAño, nValor, nLugar, nAutores, nExhibida, nPropietario, nExhibaVendaoSubaste, nAncho, nAlto, nConsignacion, true, false, "20/09/2024");
 		identificacionPieza.put(jImpresion.getString("Identificador"), impresion);
 
 	}
@@ -330,7 +310,7 @@ public class PersistenciaPiezas {
 		int nAlto = jPintura.getInt("Alto");
 		int nAncho = jPintura.getInt("Ancho");
 		boolean nConsignacion = jPintura.getBoolean("Consignacion");
-		Pintura pintura = galeria.getFabrica().crearPintura(nTitulo, nAño, nValor, nLugar, nAutores, nExhibida, nPropietario, nExhibaVendaoSubaste, nAncho, nAlto, nConsignacion);
+		Pintura pintura = galeria.getFabrica().crearPintura(nTitulo, nAño, nValor, nLugar, nAutores, nExhibida, nPropietario, nExhibaVendaoSubaste, nAncho, nAlto, nConsignacion, true, false, "20/09/2024");
 		identificacionPieza.put(jPintura.getString("Identificador"), pintura);
 
 	}
@@ -356,7 +336,7 @@ public class PersistenciaPiezas {
 		int nDuracion = jVideo.getInt("Duracion");
 		String nFormato = jVideo.getString("Formato");
 		boolean nConsignacion = jVideo.getBoolean("Consignacion");
-		Video video = galeria.getFabrica().crearVideo(nTitulo, nAño, nValor, nLugar, nAutores, nExhibida, nPropietario, nExhibaVendaoSubaste, nAncho, nAlto, nDuracion, nFormato, nConsignacion);
+		Video video = galeria.getFabrica().crearVideo(nTitulo, nAño, nValor, nLugar, nAutores, nExhibida, nPropietario, nExhibaVendaoSubaste, nAncho, nAlto, nDuracion, nFormato, nConsignacion, true, false, "20/09/2024");
 		identificacionPieza.put(jVideo.getString("Identificador"), video);
 	}
 

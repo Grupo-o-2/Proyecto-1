@@ -11,7 +11,6 @@ public class Empleado extends Usuario{
 	
 
 	public String getTipo() {
-		
 		return this.tipo;
 	}
 }

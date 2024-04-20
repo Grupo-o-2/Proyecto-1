@@ -1,7 +1,11 @@
 package usuarios;
 import java.util.ArrayList;
-import modelo.*;
+
+import java.util.*; 
+import fabrica.*;
 import piezas.*;
+import modelo.*;
+import exceptions.*;
 
 
 public class Cajero extends Empleado {
@@ -17,4 +21,11 @@ public class Cajero extends Empleado {
 		
 		return this.tipo;
 	}
-}
+
+	public void venderPieza (Comprador comprador, Pieza pieza, Galeria galeria) throws UsuarioInexistenteException, DineroInsuficienteException, VentaImposibleException {
+		
+		((Administrador )galeria.getAdministrador()).verificacionDeCompra(pieza, comprador, galeria);
+			
+		}
+	}
+

@@ -1,5 +1,4 @@
 package fabrica;
-
 import exceptions.*; 
 import usuarios.*;
 import piezas.*;
@@ -41,7 +40,7 @@ public class Fabrica {
 	private int cantidadVideosCreados;
 	private ArrayList<Pieza> videosCreados = new ArrayList<Pieza>();
 	private int cantidadComprasCreadas;
-	private ArrayList<Oferta> comprasCreadas;
+	private ArrayList<VentaPiezas> comprasCreadas;
 	private PersistenciaCentral persistencia = new PersistenciaCentral();
 	private ArrayList<String> logins = new ArrayList<String>();
 	
@@ -148,10 +147,10 @@ public class Fabrica {
 	
 	public Escultura crearEscultura(String titulo, int año, int valor, String lugar, String autores, boolean exhibida,
 			Comprador creador, String exhibaVendaoSubasta, int alto, int ancho, 
-			int profundidad, String materiales, int peso, boolean electricidad, boolean otroDetalle, boolean consignacion) {
-		Escultura nEscultura  = new Escultura(titulo, año, valor, lugar, autores, exhibida,
-				creador, exhibaVendaoSubasta, alto, ancho, 
-				profundidad, materiales, peso, electricidad, otroDetalle, consignacion); 
+			int profundidad, String materiales, int peso, boolean electricidad, boolean otroDetalle, boolean consignacion, boolean dispsubasta, boolean dispventa, String fecha) {
+		Escultura nEscultura  = new Escultura(titulo, año, valor, lugar, autores, exhibida, dispventa, fecha, 
+				creador,  exhibaVendaoSubasta, alto, ancho, 
+				profundidad, materiales, peso, electricidad, otroDetalle, consignacion, dispsubasta); 
 		this.cantidadPiezasCreadas++;
 		this.piezasCreadas.add(nEscultura);
 		this.cantidadEsculturasCreadas++;
@@ -162,9 +161,9 @@ public class Fabrica {
 	
 	public Fotografia crearFotografia(String titulo, int año, int valor, String lugar, String autores, boolean exhibida,
 			Comprador creador, String exhibaVendaoSubasta, int alto, int ancho, String formato, boolean enmarcado,
-			boolean consignacion) {
+			boolean consignacion, boolean dispsubasta, boolean dispventa, String fecha) {
 		Fotografia nFotografia  = new Fotografia(titulo, año, valor, lugar, autores, exhibida,
-				creador, exhibaVendaoSubasta, alto, ancho, formato, enmarcado,  consignacion); 
+				fecha, dispventa, creador, exhibaVendaoSubasta, alto, ancho, formato, enmarcado, consignacion, dispsubasta); 
 		this.cantidadPiezasCreadas++;
 		this.piezasCreadas.add(nFotografia);
 		this.cantidadFotografiasCreadas++;
@@ -174,9 +173,9 @@ public class Fabrica {
 	}
 	
 	public Impresion crearImpresion(String titulo, int año, int valor, String lugar, String autores, boolean exhibida,
-			Comprador creador, String exhibaVendaoSubasta, int ancho, int alto, boolean consignacion) {
+			Comprador creador, String exhibaVendaoSubasta, int ancho, int alto, boolean consignacion, boolean dispsubasta, boolean dispventa, String fecha ) {
 		Impresion nImpresion  = new Impresion(titulo, año, valor, lugar, autores, exhibida,
-				creador,  exhibaVendaoSubasta, ancho, alto, consignacion); 
+				creador,  exhibaVendaoSubasta, ancho, alto, consignacion, fecha, dispsubasta, dispventa); 
 		this.cantidadPiezasCreadas++;
 		this.piezasCreadas.add(nImpresion);
 		this.cantidadImpresionesCreadas++;
@@ -186,9 +185,9 @@ public class Fabrica {
 	}
 	
 	public Pintura crearPintura(String titulo, int año, int valor, String lugar, String autores, boolean exhibida,
-			Comprador creador, String exhibaVendaoSubasta, int ancho, int alto, boolean consignacion) {
-		Pintura nPintura  = new Pintura(titulo, año, valor, lugar, autores, exhibida,
-				creador, exhibaVendaoSubasta, ancho, alto, consignacion); 
+			Comprador creador, String exhibaVendaoSubasta, int ancho, int alto, boolean consignacion, boolean dispsubasta,boolean dispventa, String fecha) {
+		Pintura nPintura  = new Pintura(titulo, año, valor, lugar, autores, exhibida, dispventa, fecha,
+				creador, exhibaVendaoSubasta, ancho, alto, consignacion, dispsubasta); 
 		this.cantidadPiezasCreadas++;
 		this.piezasCreadas.add(nPintura);
 		this.cantidadPinturasCreadas++;
@@ -199,9 +198,9 @@ public class Fabrica {
 	
 	public Video crearVideo(String titulo, int año, int valor, String lugar, String autores, boolean exhibida,
 			Comprador creador, String exhibaVendaoSubasta, int ancho, int alto,int duracion, String formato,
-			boolean consignacion) {
+			boolean consignacion, boolean dispsubasta, boolean dispventa, String fecha) {
 		Video nVideo  = new Video(titulo, año, valor, lugar, autores, exhibida,
-				 creador, exhibaVendaoSubasta, ancho, alto, duracion, formato, consignacion); 
+				 creador, exhibaVendaoSubasta, ancho, alto, duracion, formato, consignacion, dispsubasta, dispventa, fecha); 
 		this.cantidadPiezasCreadas++;
 		this.piezasCreadas.add(nVideo);
 		this.cantidadVideosCreados++;
@@ -319,7 +318,7 @@ public class Fabrica {
 		return cantidadComprasCreadas;
 	}
 
-	public ArrayList<Oferta> getComprasCreadas() {
+	public ArrayList<VentaPiezas> getComprasCreadas() {
 		return comprasCreadas;
 	}
 
@@ -373,13 +372,15 @@ public class Fabrica {
 				new ArrayList<Pieza>(), new ArrayList<Pieza>(), 100000, 673247890, galeriaUno);
 		Comprador tercerComprador = fabrica.crearComprador("Taylor West", "Antihero", "Swifties", 2000000,
 				new ArrayList<Pieza>(), new ArrayList<Pieza>(), 100, 10247890, galeriaUno);
+		/*
 		Video primerVideo = fabrica.crearVideo("Top 5 dame tu cosita captados en cámara", 2018, 2000 ,"Puerto Rico", "Tilin Insano, Dame tu cosita", true, primerComprador, 
-				 "1", 1920, 1080, 152, ".mp4", false);
+				 "1", 1920, 1080, 152, ".mp4", false, true, false, false, "20/09/2024" );
 		Fotografia primeraFotografia = fabrica.crearFotografia("Soy un Dios", 2016, 2000000 ,"West Coast", "Lady Gaga", true, segundoComprador, 
-				 "1", 1920, 1080, ".jpg", true, false);
+				 "1", 1920, 1080, ".jpg", true, false, true, new ArrayList<VentaPiezas> () );
 		Pintura primeraPintura = fabrica.crearPintura("Famous", 2016, 2000000 ,"West Coast", "Jean Calude Van Damme", true, 
-				primerComprador, "1", 1920, 1080, false);
-		Impresion primeraImpresion = fabrica.crearImpresion("Tarea", 2024, 1 ,"Bogotá", "Epson", true, segundoComprador,  "1", 1920, 1080, false);
+				primerComprador, "1", 1920, 1080, false, true, new ArrayList<VentaPiezas> ());
+		Impresion primeraImpresion = fabrica.crearImpresion("Tarea", 2024, 1 ,"Bogotá", "Epson", true, segundoComprador,  "1", 1920, 1080, false, true, new ArrayList<VentaPiezas> ());
+		*/
 		fabrica.getPersistencia().salvarGaleria("Prueba.json" , fabrica.getCompradoresCreados(), fabrica.getPiezasCreadas());
 		
 		System.out.println(fabricaDos.getCantidadUsariosCreados());
