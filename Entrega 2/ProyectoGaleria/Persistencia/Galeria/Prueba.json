@@ -1,46 +1,52 @@
 {
   "Usuarios": [
     {
-      "Nombre": "Pepe",
-      "Piezas Actuales": ",0,2",
-      "Historial Piezas": "0,2,",
+      "Nombre": "Alice",
+      "Piezas Actuales": ",0,1,2,3,4",
+      "Historial Piezas": "Vacío",
       "Tipo": "Comprador",
       "Telefono": 1234567890,
-      "Login": "el pepe",
+      "Login": "loginalice",
       "Dinero": 0,
       "Valor Maximo Compras": 200,
       "Password": "hola123"
     },
     {
-      "Nombre": "KS",
-      "Piezas Actuales": ",1,3",
-      "Historial Piezas": "1,3,",
-      "Tipo": "Comprador",
-      "Telefono": 673247890,
-      "Login": "Kanye Swift",
-      "Dinero": 100000,
-      "Valor Maximo Compras": 20000,
-      "Password": "MisstheoldKanye"
+      "Nombre": "Bob",
+      "Tipo": "Administrador",
+      "Telefono": 912345678,
+      "Login": "loginbob",
+      "Password": "adios456"
     },
     {
-      "Nombre": "Swifties",
-      "Piezas Actuales": "Vacío",
-      "Historial Piezas": "Vacío",
-      "Tipo": "Comprador",
-      "Telefono": 10247890,
-      "Login": "Taylor West",
-      "Dinero": 100,
-      "Valor Maximo Compras": 2000000,
-      "Password": "Antihero"
+      "Nombre": "Eve",
+      "Tipo": "Cajero",
+      "Telefono": 891234567,
+      "Login": "logineve",
+      "Password": "saludos789"
+    },
+    {
+      "Nombre": "Neo",
+      "Tipo": "Operador",
+      "Telefono": 789123456,
+      "Login": "loginneo",
+      "Password": "secreto"
+    },
+    {
+      "Nombre": "Thomas Anderson",
+      "Tipo": "Empleado",
+      "Telefono": 789123456,
+      "Login": "logiThomasAnderson",
+      "Password": "enlamatrix"
     }
   ],
   "Piezas": [
     {
-      "Proprietario": "el pepe",
-      "Autores": "Tilin Insano, Dame tu cosita",
+      "Proprietario": "loginalice",
+      "Autores": "Autor artista",
       "Lugar": "Puerto Rico",
       "Consignacion": false,
-      "Titulo": "Top 5 dame tu cosita captados en cámara",
+      "Titulo": "Video artístico",
       "Valor": 2000,
       "Exhiba venda o subasta": "1",
       "Formato": ".mp4",
@@ -53,39 +59,22 @@
       "Año": 2018
     },
     {
-      "Proprietario": "Kanye Swift",
-      "Autores": "Lady Gaga",
-      "Lugar": "West Coast",
-      "Enmarcado": true,
+      "Proprietario": "loginalice",
+      "Autores": "Albert Aublet",
+      "Lugar": "Francia",
       "Consignacion": false,
-      "Titulo": "Soy un Dios",
-      "Valor": 2000000,
-      "Exhiba venda o subasta": "1",
-      "Formato": ".jpg",
-      "Exhibida": false,
-      "Tipo": "Fotografia",
-      "Alto": 1080,
-      "Ancho": 1920,
-      "Identificador": "1",
-      "Año": 2016
-    },
-    {
-      "Proprietario": "el pepe",
-      "Autores": "Jean Calude Van Damme",
-      "Lugar": "West Coast",
-      "Consignacion": false,
-      "Titulo": "Famous",
+      "Titulo": "Selene",
       "Valor": 2000000,
       "Exhiba venda o subasta": "1",
       "Exhibida": false,
       "Tipo": "Pintura",
       "Alto": 1920,
       "Ancho": 1080,
-      "Identificador": "2",
-      "Año": 2016
+      "Identificador": "1",
+      "Año": 1880
     },
     {
-      "Proprietario": "Kanye Swift",
+      "Proprietario": "loginalice",
       "Autores": "Epson",
       "Lugar": "Bogotá",
       "Consignacion": false,
@@ -96,8 +85,45 @@
       "Tipo": "Impresion",
       "Alto": 1920,
       "Ancho": 1080,
-      "Identificador": "3",
+      "Identificador": "2",
       "Año": 2024
+    },
+    {
+      "Proprietario": "loginalice",
+      "Autores": "fotógrafo",
+      "Lugar": "Foto Japón",
+      "Enmarcado": false,
+      "Consignacion": true,
+      "Titulo": "Fotografía artística",
+      "Valor": 2000,
+      "Exhiba venda o subasta": "1",
+      "Formato": ".png",
+      "Exhibida": false,
+      "Tipo": "Fotografia",
+      "Alto": 1080,
+      "Ancho": 1920,
+      "Identificador": "3",
+      "Año": 1816
+    },
+    {
+      "Profundidad": 152,
+      "Proprietario": "loginalice",
+      "Autores": "Desonocido",
+      "Lugar": "Mesopotamia",
+      "Otro detalle": false,
+      "Consignacion": true,
+      "Titulo": "Escultura artística",
+      "Valor": 2000000,
+      "Exhiba venda o subasta": "1",
+      "Exhibida": false,
+      "Tipo": "Escultura",
+      "Peso": 376,
+      "Materiales": "Piedra",
+      "Electricidad": false,
+      "Alto": 1920,
+      "Ancho": 1080,
+      "Identificador": "4",
+      "Año": -6000
     }
   ]
 }

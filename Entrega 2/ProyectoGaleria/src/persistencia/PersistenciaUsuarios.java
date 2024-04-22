@@ -58,32 +58,32 @@ public class PersistenciaUsuarios {
 		jComprador.put( "Dinero", comprador.getDinero( ) );
 		jComprador.put( "Telefono", comprador.getTelefono() );
 		jComprador.put( "Valor Maximo Compras", comprador.getValorMaximoCompras( ) );
-		String historialPiezas = "";
-		if (! comprador.getHistorialPiezas().isEmpty())
-		{
-			for (Pieza pieza: comprador.getHistorialPiezas())
-			{
-				historialPiezas = historialPiezas + identificadorPieza.get(pieza) + ",";
-			}
-			jComprador.put( "Historial Piezas", historialPiezas);
-		}
-		else
-		{
-			jComprador.put( "Historial Piezas", "Vacío");
-		}
-
 		String piezasActuales = "";
 		if (! comprador.getPiezasActuales().isEmpty())
 		{
 			for (Pieza pieza: comprador.getPiezasActuales())
 			{
 				piezasActuales = piezasActuales + "," + identificadorPieza.get(pieza);
+				comprador.getHistorialPiezas().remove(pieza);
 			}
 			jComprador.put( "Piezas Actuales", piezasActuales );
 		}
 		else
 		{
 			jComprador.put( "Piezas Actuales", "Vacío");
+		}
+		String historialPiezas = "";
+		if (! comprador.getHistorialPiezas().isEmpty())
+		{
+			for (Pieza pieza: comprador.getHistorialPiezas())
+			{
+				historialPiezas = historialPiezas + "," + identificadorPieza.get(pieza);
+			}
+			jComprador.put( "Historial Piezas", historialPiezas);
+		}
+		else
+		{
+			jComprador.put( "Historial Piezas", "Vacío");
 		}
 		jComprador.put( "Tipo", comprador.getTipo( ) );
 
@@ -132,15 +132,15 @@ public class PersistenciaUsuarios {
 				{
 					cargarAdministrador(usuario, galeria, fabrica);
 				}
-				else if ("Empleado".equals(tipo))
+				else if ("Administrador".equals(tipo))
 				{
 					cargarCajero(usuario, galeria, fabrica);						
 				}
-				else if ("Empleado".equals(tipo))
+				else if ("Cajero".equals(tipo))
 				{
 					cargarOperador(usuario, galeria, fabrica);
 				}
-				else if ("Empleado".equals(tipo))
+				else if ("Operador".equals(tipo))
 				{
 					cargarEmpleado(usuario, galeria, fabrica);
 				}
@@ -179,7 +179,7 @@ public class PersistenciaUsuarios {
 			String nPassword = jAdministrador.getString("Password");
 			String nNombre = jAdministrador.getString("Nombre");
 			int nTelefono = jAdministrador.getInt("Telefono");
-			Administrador nAdministrador = fabrica.crearAdministrador(nLogin, nPassword,nTelefono, nNombre);
+			Administrador nAdministrador = fabrica.crearAdministrador(nLogin, nPassword,nTelefono, nNombre, galeria);
 		}
 	
 	public void cargarCajero(JSONObject jCajero, Galeria galeria,
@@ -189,7 +189,7 @@ public class PersistenciaUsuarios {
 		String nPassword = jCajero.getString("Password");
 		String nNombre = jCajero.getString("Nombre");
 		int nTelefono = jCajero.getInt("Telefono");
-		Cajero nCajero = fabrica.crearCajero(nLogin, nPassword,nTelefono, nNombre);
+		Cajero nCajero = fabrica.crearCajero(nLogin, nPassword,nTelefono, nNombre, galeria);
 		}
 	
 	public void cargarOperador(JSONObject jOperador, Galeria galeria,
@@ -199,7 +199,7 @@ public class PersistenciaUsuarios {
 			String nPassword = jOperador.getString("Password");
 			String nNombre = jOperador.getString("Nombre");
 			int nTelefono = jOperador.getInt("Telefono");
-			Operador nOperador = fabrica.crearOperador(nLogin, nPassword, nTelefono, nNombre);
+			Operador nOperador = fabrica.crearOperador(nLogin, nPassword, nTelefono, nNombre, galeria);
 		}
 
 	public void cargarEmpleado(JSONObject jEmpleado, Galeria galeria,
@@ -209,6 +209,6 @@ public class PersistenciaUsuarios {
 			String nPassword = jEmpleado.getString("Password");
 			String nNombre = jEmpleado.getString("Nombre");
 			int nTelefono = jEmpleado.getInt("Telefono");
-			Empleado nEmpleado = fabrica.crearEmpleado(nLogin, nPassword, nTelefono, nNombre);
+			Empleado nEmpleado = fabrica.crearEmpleado(nLogin, nPassword, nTelefono, nNombre, galeria);
 		}	
 }

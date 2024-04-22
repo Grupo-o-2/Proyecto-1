@@ -234,7 +234,7 @@ public class PersistenciaPiezas {
 		boolean nExhibida = jEscultura.getBoolean("Exhibida");
 		int nAlto = jEscultura.getInt("Alto");
 		int nAancho = jEscultura.getInt("Ancho");
-		int nProfundidad = jEscultura.getInt("Profunidad");
+		int nProfundidad = jEscultura.getInt("Profundidad");
 		String nMateriales = jEscultura.getString("Materiales");
 		int nPeso = jEscultura.getInt("Peso");
 		boolean nElectricidad = jEscultura.getBoolean("Electricidad");

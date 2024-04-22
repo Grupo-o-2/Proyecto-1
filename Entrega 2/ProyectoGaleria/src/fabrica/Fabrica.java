@@ -73,7 +73,7 @@ public class Fabrica {
 		}
 	}
 	
-	public Empleado crearEmpleado(String login, String password,int telefono, String nombre ) throws LoginException {
+	public Empleado crearEmpleado(String login, String password,int telefono, String nombre, Galeria galeria  ) throws LoginException {
 		if (this.logins.contains(login))
 		{
 			throw new LoginException(login);
@@ -86,11 +86,12 @@ public class Fabrica {
 			this.usuariosCreados.add(nEmpleado);
 			this.cantidadEmpleadosCreados++;
 			this.empleadosCreados.add(nEmpleado);
+			galeria.agregarUsuario(nEmpleado);
 			return nEmpleado;
 		}
 	}
 	
-		public Operador crearOperador(String login, String password,int telefono, String nombre ) throws LoginException {
+		public Operador crearOperador(String login, String password,int telefono, String nombre,  Galeria galeria  ) throws LoginException {
 		
 		if (this.logins.contains(login))
 		{
@@ -104,11 +105,12 @@ public class Fabrica {
 			this.usuariosCreados.add(nOperador);
 			this.cantidadCajerosCreados++;
 			this.cajerosCreados.add(nOperador);
+			galeria.agregarUsuario(nOperador);
 			return nOperador;
 		}
 	}
 	
-	public Cajero crearCajero(String login, String password,int telefono, String nombre ) throws LoginException {
+	public Cajero crearCajero(String login, String password,int telefono, String nombre,  Galeria galeria  ) throws LoginException {
 		
 		if (this.logins.contains(login))
 		{
@@ -122,11 +124,12 @@ public class Fabrica {
 			this.usuariosCreados.add(nCajero);
 			this.cantidadCajerosCreados++;
 			this.cajerosCreados.add(nCajero);
+			galeria.agregarUsuario(nCajero);
 			return nCajero;
 		}
 	}
 	
-	public Administrador crearAdministrador(String login, String password, int telefono, String nombre) throws LoginException {
+	public Administrador crearAdministrador(String login, String password, int telefono, String nombre,  Galeria galeria ) throws LoginException {
 		
 		if (this.logins.contains(login))
 		{
@@ -140,6 +143,7 @@ public class Fabrica {
 			this.usuariosCreados.add(nAdministrador);
 			this.cantidadAdministradoresCreados++;
 			this.administradoresCreados.add(nAdministrador);
+			galeria.agregarUsuario(nAdministrador);
 			return nAdministrador;
 		}
 		
@@ -332,7 +336,7 @@ public class Fabrica {
 	
 	public void salvarGaleria(String archivo, Galeria galeria) throws IOException
 	{
-			persistencia.salvarGaleria(archivo, this.usuariosCreados, this.piezasCreadas);
+			persistencia.salvarGaleria(archivo, galeria.getUsuarios(), this.piezasCreadas);
 	}
 	
 	public void cargarGaleria(String archivo, Galeria galeria) throws IOException, LoginException, LoginInexistenteException
@@ -340,71 +344,4 @@ public class Fabrica {
 			persistencia.cargarGaleria(archivo, galeria);
 	}
 
-	public static void main(String[] args ) {
-	
-		System.out.println("------------------------------------------------------------------------------------------\n");
-		System.out.println("Bienvenido al prototipo de prueba de funcionamiento de la aplicación. :D \n");
-		System.out.println("------------------------------------------------------------------------------------------\n");
-		System.out.println("Probaremos el funcionamiento de las siguientes funcionalidades: \n");
-		System.out.println("\t Crear una galería.\n");
-		System.out.println("\t Crear un usuario (comprador, empleado, administrador, operador, cajero).\n");
-		System.out.println("\t Crear una pieza (escultura, fotografía, impresión, pintura, video).\n");
-		System.out.println("\t Salvar una galería creada.\n");
-		System.out.println("\t Cargar una galería creada.\n");
-		Fabrica fabrica = new Fabrica();
-		Fabrica fabricaDos = new Fabrica();
-		System.out.println("------------------------------------------------------------------------------------------\n");
-		Galeria galeriaUno = fabrica.crearGaleria("Los hermanos", new ArrayList<Subasta>(), new ArrayList<Pieza>(),
-				new ArrayList<Pieza>(), new ArrayList<Pieza>(), new ArrayList<Usuario>());
-		System.out.println("Se ha creado la galería " + galeriaUno.getNombre() + " con " + galeriaUno.getUsuarios().size() 
-				+ " usuarios registrados, " + galeriaUno.getPiezasActuales().size() 
-				+ " piezas actuales, " + galeriaUno.getHistorialPiezas().size() 
-				+ " piezas en el historial y " + galeriaUno.getPiezasAntiguas().size() 
-				+ " piezas antiguas." );
-		try {
-		Comprador primerComprador = fabrica.crearComprador("el pepe", "hola123", "Pepe", 200,
-				new ArrayList<Pieza>(), new ArrayList<Pieza>(), 0, 1234567890, galeriaUno);
-		System.out.println("------------------------------------------------------------------------------------------ \n");
-		System.out.println("Se ha creado un comprador que a continuación se presentará: \n \n");
-		System.out.println("Hola, soy " + primerComprador.getNombre() + " y tengo " + primerComprador.getDinero() + " de dinero, " + primerComprador.getPiezasActuales().size() + " piezas actuales y " + primerComprador.getHistorialPiezas().size() + " piezas en mi historial. Si te quieres "
-				+ "poner en contacto conmigo, llámame al " + primerComprador.getTelefono() + " . Mi login es " + primerComprador.getLogin() + " y mi contraseña es " + primerComprador.getPassword() + ". Nos vemos :-).");
-		Comprador segundoComprador = fabrica.crearComprador("Kanye Swift", "MisstheoldKanye", "KS", 20000,
-				new ArrayList<Pieza>(), new ArrayList<Pieza>(), 100000, 673247890, galeriaUno);
-		Comprador tercerComprador = fabrica.crearComprador("Taylor West", "Antihero", "Swifties", 2000000,
-				new ArrayList<Pieza>(), new ArrayList<Pieza>(), 100, 10247890, galeriaUno);
-		/*
-		Video primerVideo = fabrica.crearVideo("Top 5 dame tu cosita captados en cámara", 2018, 2000 ,"Puerto Rico", "Tilin Insano, Dame tu cosita", true, primerComprador, 
-				 "1", 1920, 1080, 152, ".mp4", false, true, false, false, "20/09/2024" );
-		Fotografia primeraFotografia = fabrica.crearFotografia("Soy un Dios", 2016, 2000000 ,"West Coast", "Lady Gaga", true, segundoComprador, 
-				 "1", 1920, 1080, ".jpg", true, false, true, new ArrayList<VentaPiezas> () );
-		Pintura primeraPintura = fabrica.crearPintura("Famous", 2016, 2000000 ,"West Coast", "Jean Calude Van Damme", true, 
-				primerComprador, "1", 1920, 1080, false, true, new ArrayList<VentaPiezas> ());
-		Impresion primeraImpresion = fabrica.crearImpresion("Tarea", 2024, 1 ,"Bogotá", "Epson", true, segundoComprador,  "1", 1920, 1080, false, true, new ArrayList<VentaPiezas> ());
-		*/
-		fabrica.getPersistencia().salvarGaleria("Prueba.json" , fabrica.getCompradoresCreados(), fabrica.getPiezasCreadas());
-		
-		System.out.println(fabricaDos.getCantidadUsariosCreados());
-		
-		Galeria galeriaDos = fabricaDos.crearGaleria("Los primos (no relacionado a teoría de números :p)", new ArrayList<Subasta>(), new ArrayList<Pieza>(),
-				new ArrayList<Pieza>(), new ArrayList<Pieza>(), new ArrayList<Usuario>());
-		galeriaDos.cargarGaleria("C:\\Users\\naran\\Desktop\\workspace_eclipse\\Proyecto-1\\Entrega 2\\ProyectoGaleria\\Persistencia\\Galeria\\Prueba.json");
-		ArrayList<Usuario> usuarios = galeriaDos.getUsuarios();
-		System.out.println(usuarios.size());
-		for (Usuario usuario: usuarios)
-		{
-			Comprador comprador = (Comprador) usuario;
-			System.out.println("Hola, soy " + comprador.getNombre() + " y tengo " + comprador.getDinero() + " de dinero. Si te quieres "
-					+ "poner en contacto conmigo, llámame al " + comprador.getTelefono() + " . Mi login es " + comprador.getLogin() + " y mi contraseña es " + comprador.getPassword() + ". Nos vemos :-).");
-		}
-		}
-		catch (LoginException l)
-		{
-			System.out.println(l.getMessage());
-		}
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-		
 	}
-}
