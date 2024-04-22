@@ -7,6 +7,7 @@ import usuarios.*;
 
 
 
+
 abstract public class Pieza {
 	
 	private String titulo;
