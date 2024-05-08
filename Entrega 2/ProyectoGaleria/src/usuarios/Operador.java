@@ -8,7 +8,7 @@ import exceptions.*;
 
 public class Operador extends Empleado{
 	
-	private String tipo="Operador";
+	private static final String tipo="Operador";
 	
 	public Operador(String login, String password, int telefono, String nombre) {
 		
@@ -31,7 +31,7 @@ public class Operador extends Empleado{
 		
 		for (Pieza piezaactual: piezasbodega) {
 			
-			boolean dispsubasta = piezaactual.getDispsubasta();
+			boolean dispsubasta = piezaactual.isDispsubasta();
 			
 			if(dispsubasta) {
 				
@@ -43,7 +43,7 @@ public class Operador extends Empleado{
 		
 		for (Pieza piezaactual: piezasexhibidas) {
 			
-			boolean dispsubasta = piezaactual.getDispsubasta();
+			boolean dispsubasta = piezaactual.isDispsubasta();
 			
 			if(dispsubasta) {
 				

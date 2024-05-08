@@ -17,9 +17,9 @@ abstract public class Pieza {
 	private boolean exhibida;
 	private int valor;
 	private Usuario propietario;
-	public String EXHIBA = "1";
-	public String VENTA = "2";
-	public String SUBASTA = "3";
+	public static final String EXHIBA = "1";
+	public static final String VENTA = "2";
+	public static final String SUBASTA = "3";
 	private String exhibaVendaoSubasta;	
 	private boolean consignacion = false;
 	private String fecha;
@@ -125,7 +125,7 @@ abstract public class Pieza {
 		
 	}
 
-	public boolean getDispsubasta() {
+	public boolean isDispsubasta() {
 		return this.dispsubasta;
 	}
 	

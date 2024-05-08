@@ -11,7 +11,7 @@ public class Escultura extends Pieza {
 	private int peso;
 	private boolean electricidad;
 	private boolean otroDetalle;
-	private String tipo="Escultura";
+	private static final String tipo="Escultura";
 	
 	
 	public int getAlto() {
@@ -42,9 +42,9 @@ public class Escultura extends Pieza {
 		return otroDetalle;
 	}
 
-	public Escultura(String titulo, int año, int valor, String lugar,String autores, boolean exhibida, boolean dispventa, String fecha,
+	public Escultura(String titulo, int año, int valor, String lugar,String autores, boolean exhibida,
 			Usuario propietario, String exhibaVendaoSubasta, int alto, int ancho, 
-			int profundidad, String materiales, int peso, boolean electricidad, boolean otroDetalle, boolean consignacion, boolean dispsubasta) {
+			int profundidad, String materiales, int peso, boolean electricidad, boolean otroDetalle, boolean consignacion, String fecha, boolean dispsubasta, boolean dispventa) {
 		super(titulo, año, valor, lugar, autores, exhibida, propietario, exhibaVendaoSubasta, consignacion,fecha, dispsubasta,dispventa);
 		this.alto = alto;
 		this.ancho = ancho;

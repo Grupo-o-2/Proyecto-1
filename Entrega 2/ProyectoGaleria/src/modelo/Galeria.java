@@ -13,10 +13,10 @@ public class Galeria {
 
 	private String nombre;
 	private ArrayList<Subasta> subastas;
-	private ArrayList<Pieza> historialPiezas = new ArrayList<Pieza>();
-	private ArrayList<Pieza> piezasActuales = new ArrayList<Pieza>();
-	private ArrayList<Pieza> piezasAntiguas = new ArrayList<Pieza>();
-	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+	private ArrayList<Pieza> historialPiezas;
+	private ArrayList<Pieza> piezasActuales;
+	private ArrayList<Pieza> piezasAntiguas;
+	private ArrayList<Usuario> usuarios;
 	private Fabrica fabrica = new Fabrica();
 
 	public Galeria(String nombre, ArrayList<Subasta> subastas, ArrayList<Pieza> historialPiezas,
@@ -169,46 +169,9 @@ public class Galeria {
 		subasta.finalizarSubasta(this);
 	}
 
-	double pedirNumeroAlUsuario( String mensaje )
-	{
-		double valorResultado = Integer.MIN_VALUE;
-		while( valorResultado == Integer.MIN_VALUE )
-		{
-			try
-			{
-				System.out.print( mensaje + ": " );
-				BufferedReader reader = new BufferedReader( new InputStreamReader( System.in ) );
-				String input = reader.readLine( );
-				double numero = Double.parseDouble( input );
-				valorResultado = numero;
-			}
-			catch( NumberFormatException nfe )
-			{
-				System.out.println( "El valor digitado no es un entero" );
-			}
-			catch( IOException e )
-			{
-				System.out.println( "Error leyendo de la consola" );
-			}
-		}
-		return valorResultado;
-	}
-
-	public String pedirCadenaAlUsuario( String mensaje )
-	{
-		try
-		{
-			System.out.print( mensaje + ": " );
-			BufferedReader reader = new BufferedReader( new InputStreamReader( System.in ) );
-			String input = reader.readLine( );
-			return input;
-		}
-		catch( IOException e )
-		{
-			System.out.println( "Error leyendo de la consola" );
-		}
-		return "error";
-	}
+	
+	/**
+	
 
 	public void mostrarMenu()
 	{
@@ -377,26 +340,26 @@ public class Galeria {
 					Comprador primerComprador = fabricaPiezas.crearComprador("loginPrueba", "Prueba", "Comprador de Prubea", 0,
 							new ArrayList<Pieza>(), new ArrayList<Pieza>(), 0, 0, galeriaPiezas);
 					Video video = fabricaPiezas.crearVideo("Video artístico", 2018, 2000 ,"Puerto Rico", "Autor artista", true, primerComprador, 
-							"1", 1920, 1080, 152, ".mp4", false, true, false, "20/09/2024" );
+							"1", 1920, 1080, 152, ".mp4", false, "20/09/2024", true, false);
 					System.out.println("------------------------------------------------------------------------------------------ \n");
 					System.out.println("Se ha creado un video titulado " + video.getTitulo() + ", creado en el año" + video.getAño() 
 					+ " por " + video.getAutores() + " con un valor de " + video.getValor() + ".");
 					Pintura pintura = fabricaPiezas.crearPintura("Selene", 1880, 2000000 ,"Francia" , "Albert Aublet", true, primerComprador, 
-							"1", 1920, 1080, false, true, true, "20/09/2024");				System.out.println("------------------------------------------------------------------------------------------ \n");
+							"1", 1920, 1080, false, "20/09/2024" , true, true);				System.out.println("------------------------------------------------------------------------------------------ \n");
 							System.out.println("------------------------------------------------------------------------------------------ \n");
 							System.out.println("Se ha creado una pintura titulada " + pintura.getTitulo() + ", creado en el año" + pintura.getAño() 
 							+ " por " + pintura.getAutores() + " con un valor de " + pintura.getValor() + ".");
-							Impresion impresion = fabricaPiezas.crearImpresion("Tarea", 2024, 1 ,"Bogotá", "Epson", true, primerComprador,  "1", 1920, 1080, false,  true, true,"26/04/2024" );
+							Impresion impresion = fabricaPiezas.crearImpresion("Tarea", 2024, 1 ,"Bogotá", "Epson", true, primerComprador,  "1", 1920, 1080, false, "20/09/2024" , true, true );
 							System.out.println("------------------------------------------------------------------------------------------ \n");
 							System.out.println("Se ha creado la impresión titulada " + impresion.getTitulo() + ", creado en el año" + impresion.getAño() 
 							+ " por " + impresion.getAutores() + " con un valor de " + impresion.getValor() + ".");
 							Fotografia fotografia = fabricaPiezas.crearFotografia("Fotografía artística", 1816, 2000 ,"Foto Japón", "fotógrafo", true, primerComprador, 
-									"1", 1920, 1080, ".png", false, true, true, true, "20/09/2024" );
+									"1", 1920, 1080, ".png", false, true, "20/09/2024", true, true );
 							System.out.println("------------------------------------------------------------------------------------------ \n");
 							System.out.println("Se ha creado una fotografía titulada " + fotografia.getTitulo() + ", creado en el año" + fotografia.getAño() 
 							+ " por " + fotografia.getAutores() + " con un valor de " + fotografia.getValor() + ".");
 							Escultura escultura = fabricaPiezas.crearEscultura("Escultura artística", -6000, 2000000 ,	"Mesopotamia", "Desonocido", true, primerComprador, 
-									"1", 1920, 1080, 152, "Piedra", 376, false, false,true ,false,  false, "20/09/2024" );
+									"1", 1920, 1080, 152, "Piedra", 376, false, false,true, "20/09/2024" ,false,  false);
 							System.out.println("------------------------------------------------------------------------------------------ \n");
 							System.out.println("Se ha creado una escultura titulada " + escultura.getTitulo() + ", creado en el año" + escultura.getAño() 
 							+ " por " + escultura.getAutores() + " con un valor de " + escultura.getValor() + ".");
@@ -625,6 +588,7 @@ public class Galeria {
 					Cajero cajero = fabricaGuardarDos.crearCajero("logineve", "saludos789",891234567, "Eve", galeriaGuardarDos);
 					Operador operador = fabricaGuardarDos.crearOperador("loginneo", "secreto",789123456, "Neo", galeriaGuardarDos);
 					Empleado empleado = fabricaGuardarDos.crearEmpleado("logiThomasAnderson", "enlamatrix",789123456, "Thomas Anderson", galeriaGuardarDos);
+					/*
 					Video video = fabricaGuardarDos.crearVideo("Video artístico", 2018, 2000 ,"Puerto Rico", "Autor artista", true, primerComprador, 
 							"1", 1920, 1080, 152, ".mp4", false, true, false, "20/09/2024" );
 					Pintura pintura = fabricaGuardarDos.crearPintura("Selene", 1880, 2000000 ,"Francia" , "Albert Aublet", true, primerComprador, 
@@ -698,6 +662,7 @@ public class Galeria {
 			}
 		}
 	}
+	*/
 }
 
 

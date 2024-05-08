@@ -15,6 +15,21 @@ import java.nio.file.Files;
 import org.json.JSONArray;
 import org.json.JSONObject;
 public class PersistenciaUsuarios {
+	
+	private static final String tipoAdministrador = "Administrador";
+	private static final String tipoCajero = "Cajero";
+	private static final String tipoComprador = "Comprador";
+	private static final String tipoEmpleado = "Empleado";
+	private static final String tipoOperador = "Operador";
+	private static final String login = "Login";
+	private static final String password = "Password";
+	private static final String nombre = "Nombre";
+	private static final String telefono = "Telefono";
+	private static final String tipo = "Tipo ";
+
+	public PersistenciaUsuarios() {
+
+	}
 
 	public void salvarUsuariosCreados (String archivo, ArrayList<Usuario> compradores, HashMap<Pieza, String> identificadorPieza) throws IOException
 	{
@@ -33,15 +48,15 @@ public class PersistenciaUsuarios {
 		JSONArray jUsuarios = new JSONArray( );
 		for (Usuario usuario: usuarios) {
 
-			if ("Comprador".equals(usuario.getTipo()))
+			if (tipoComprador.equals(usuario.getTipo()))
 			{
 				salvarComprador((Comprador) usuario, jUsuarios, identificadorPieza );
 			}
-			else if ("Administrador".equals(usuario.getTipo()) || "Cajero".equals(usuario.getTipo()) || "Operador".equals(usuario.getTipo()))
+			else if (tipoAdministrador.equals(usuario.getTipo()) || "Cajero".equals(usuario.getTipo()) || "Operador".equals(usuario.getTipo()))
 			{
 				salvarAdministradorOperadorCajero(usuario, jUsuarios);
 			}
-			else if ("Empleado".equals(usuario.getTipo()))
+			else if (tipoEmpleado.equals(usuario.getTipo()))
 			{
 				salvarEmpleado((Empleado) usuario, jUsuarios);
 			}
@@ -52,11 +67,11 @@ public class PersistenciaUsuarios {
 	public void salvarComprador(Comprador comprador, JSONArray jCompradores, HashMap<Pieza, String> identificadorPieza)
 	{
 		JSONObject jComprador = new JSONObject( );
-		jComprador.put( "Login", comprador.getLogin() );
-		jComprador.put( "Password", comprador.getPassword() );
-		jComprador.put( "Nombre", comprador.getNombre( ) );
+		jComprador.put( login, comprador.getLogin() );
+		jComprador.put( password, comprador.getPassword() );
+		jComprador.put( nombre, comprador.getNombre( ) );
 		jComprador.put( "Dinero", comprador.getDinero( ) );
-		jComprador.put( "Telefono", comprador.getTelefono() );
+		jComprador.put( telefono, comprador.getTelefono() );
 		jComprador.put( "Valor Maximo Compras", comprador.getValorMaximoCompras( ) );
 		String piezasActuales = "";
 		if (! comprador.getPiezasActuales().isEmpty())
@@ -85,7 +100,7 @@ public class PersistenciaUsuarios {
 		{
 			jComprador.put( "Historial Piezas", "Vacío");
 		}
-		jComprador.put( "Tipo", comprador.getTipo( ) );
+		jComprador.put( tipo, comprador.getTipo( ) );
 
 		jCompradores.put( jComprador );
 	}
@@ -93,11 +108,11 @@ public class PersistenciaUsuarios {
 	public void salvarAdministradorOperadorCajero(Usuario usuario, JSONArray jCompradores)
 	{
 		JSONObject jComprador = new JSONObject( );
-		jComprador.put( "Login", usuario.getLogin() );
-		jComprador.put( "Password", usuario.getPassword() );
-		jComprador.put( "Nombre", usuario.getNombre( ) );
-		jComprador.put( "Telefono", usuario.getTelefono() );
-		jComprador.put( "Tipo", usuario.getTipo( ) );
+		jComprador.put( login, usuario.getLogin() );
+		jComprador.put( password, usuario.getPassword() );
+		jComprador.put( nombre, usuario.getNombre( ) );
+		jComprador.put( telefono, usuario.getTelefono() );
+		jComprador.put( tipo, usuario.getTipo( ) );
 
 		jCompradores.put( jComprador );
 	}
@@ -105,11 +120,11 @@ public class PersistenciaUsuarios {
 	public void salvarEmpleado(Empleado empleado, JSONArray jCompradores)
 	{
 		JSONObject jComprador = new JSONObject( );
-		jComprador.put( "Login", empleado.getLogin() );
-		jComprador.put( "Password", empleado.getPassword() );
-		jComprador.put( "Nombre", empleado.getNombre( ) );
-		jComprador.put( "Telefono", empleado.getTelefono() );
-		jComprador.put( "Tipo", empleado.getTipo( ) );
+		jComprador.put( login, empleado.getLogin() );
+		jComprador.put( password, empleado.getPassword() );
+		jComprador.put( nombre, empleado.getNombre( ) );
+		jComprador.put( telefono, empleado.getTelefono() );
+		jComprador.put( tipo, empleado.getTipo( ) );
 
 		jCompradores.put( jComprador );
 	}
@@ -122,25 +137,25 @@ public class PersistenciaUsuarios {
 		for (int i = 0 ; i < numeroCompradores ; i++)
 		{
 			JSONObject usuario = jUsuarios.getJSONObject( i );
-			String tipo = usuario.getString("Tipo");
-				if ("Comprador".equals(tipo))
+			String tipoUsuario = usuario.getString(tipo);
+				if (tipoComprador.equals(tipoUsuario))
 				{
 					cargarComprador(usuario, galeria, loginCompradores, 
 							historialCompradores, fabrica);
 				}
-				else if ("Empleado".equals(tipo))
+				else if (tipoEmpleado.equals(tipoUsuario))
 				{
 					cargarAdministrador(usuario, galeria, fabrica);
 				}
-				else if ("Administrador".equals(tipo))
+				else if (tipoAdministrador.equals(tipoUsuario))
 				{
 					cargarCajero(usuario, galeria, fabrica);						
 				}
-				else if ("Cajero".equals(tipo))
+				else if (tipoCajero.equals(tipoUsuario))
 				{
 					cargarOperador(usuario, galeria, fabrica);
 				}
-				else if ("Operador".equals(tipo))
+				else if (tipoOperador.equals(tipoUsuario))
 				{
 					cargarEmpleado(usuario, galeria, fabrica);
 				}
@@ -151,12 +166,12 @@ public class PersistenciaUsuarios {
 	public void cargarComprador(JSONObject jComprador, Galeria galeria, HashMap<String, Comprador> loginCompradores,
 			HashMap<Comprador , String> historialCompradores, Fabrica fabrica) throws LoginException
 	{
-			String nLogin = jComprador.getString("Login");
-			String nPassword = jComprador.getString("Password");
-			String nNombre = jComprador.getString("Nombre");
+			String nLogin = jComprador.getString(login);
+			String nPassword = jComprador.getString(password);
+			String nNombre = jComprador.getString(nombre);
 			int nDinero = jComprador.getInt("Dinero");
 			int nValorMaximoCompras = jComprador.getInt("Valor Maximo Compras");
-			int nTelefono = jComprador.getInt("Telefono");
+			int nTelefono = jComprador.getInt(telefono);
 			ArrayList<Pieza> nHistorialPiezas = new ArrayList<Pieza>();
 			ArrayList<Pieza> nPiezasActuales = new ArrayList<Pieza>();
 			Comprador nComprador = fabrica.crearComprador(nLogin, nPassword, nNombre, nValorMaximoCompras, nHistorialPiezas, nPiezasActuales, nDinero, nTelefono, galeria);
@@ -171,44 +186,44 @@ public class PersistenciaUsuarios {
 	public void cargarAdministrador(JSONObject jAdministrador, Galeria galeria,
 			Fabrica fabrica) throws LoginException
 	{
-			String nLogin = jAdministrador.getString("Login");
+			String nLogin = jAdministrador.getString(login);
 			if (galeria.getUsuarios().contains(nLogin))
 			{
 				throw new LoginException(nLogin);
 			}
-			String nPassword = jAdministrador.getString("Password");
-			String nNombre = jAdministrador.getString("Nombre");
-			int nTelefono = jAdministrador.getInt("Telefono");
+			String nPassword = jAdministrador.getString(password);
+			String nNombre = jAdministrador.getString(nombre);
+			int nTelefono = jAdministrador.getInt(telefono);
 			Administrador nAdministrador = fabrica.crearAdministrador(nLogin, nPassword,nTelefono, nNombre, galeria);
 		}
 	
 	public void cargarCajero(JSONObject jCajero, Galeria galeria,
 			Fabrica fabrica) throws LoginException
 	{
-		String nLogin = jCajero.getString("Login");
-		String nPassword = jCajero.getString("Password");
-		String nNombre = jCajero.getString("Nombre");
-		int nTelefono = jCajero.getInt("Telefono");
+		String nLogin = jCajero.getString(login);
+		String nPassword = jCajero.getString(password);
+		String nNombre = jCajero.getString(nombre);
+		int nTelefono = jCajero.getInt(telefono);
 		Cajero nCajero = fabrica.crearCajero(nLogin, nPassword,nTelefono, nNombre, galeria);
 		}
 	
 	public void cargarOperador(JSONObject jOperador, Galeria galeria,
 			Fabrica fabrica) throws LoginException
 	{
-			String nLogin = jOperador.getString("Login");
-			String nPassword = jOperador.getString("Password");
-			String nNombre = jOperador.getString("Nombre");
-			int nTelefono = jOperador.getInt("Telefono");
+			String nLogin = jOperador.getString(login);
+			String nPassword = jOperador.getString(password);
+			String nNombre = jOperador.getString(nombre);
+			int nTelefono = jOperador.getInt(telefono);
 			Operador nOperador = fabrica.crearOperador(nLogin, nPassword, nTelefono, nNombre, galeria);
 		}
 
 	public void cargarEmpleado(JSONObject jEmpleado, Galeria galeria,
 			Fabrica fabrica) throws LoginException
 	{
-			String nLogin = jEmpleado.getString("Login");
-			String nPassword = jEmpleado.getString("Password");
-			String nNombre = jEmpleado.getString("Nombre");
-			int nTelefono = jEmpleado.getInt("Telefono");
+			String nLogin = jEmpleado.getString(login);
+			String nPassword = jEmpleado.getString(password);
+			String nNombre = jEmpleado.getString(nombre);
+			int nTelefono = jEmpleado.getInt(telefono);
 			Empleado nEmpleado = fabrica.crearEmpleado(nLogin, nPassword, nTelefono, nNombre, galeria);
 		}	
 }

@@ -12,6 +12,7 @@ import java.nio.file.Files;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.junit.jupiter.api.Test;
 
 public class Fabrica {
 
@@ -151,10 +152,10 @@ public class Fabrica {
 	
 	public Escultura crearEscultura(String titulo, int año, int valor, String lugar, String autores, boolean exhibida,
 			Comprador creador, String exhibaVendaoSubasta, int alto, int ancho, 
-			int profundidad, String materiales, int peso, boolean electricidad, boolean otroDetalle, boolean consignacion, boolean dispsubasta, boolean dispventa, String fecha) {
-		Escultura nEscultura  = new Escultura(titulo, año, valor, lugar, autores, exhibida, dispventa, fecha, 
+			int profundidad, String materiales, int peso, boolean electricidad, boolean otroDetalle, boolean consignacion,  String fecha, boolean dispsubasta, boolean dispventa) {
+		Escultura nEscultura  = new Escultura(titulo, año, valor, lugar, autores, exhibida,
 				creador,  exhibaVendaoSubasta, alto, ancho, 
-				profundidad, materiales, peso, electricidad, otroDetalle, consignacion, dispsubasta); 
+				profundidad, materiales, peso, electricidad, otroDetalle, consignacion,  fecha, dispsubasta, dispventa); 
 		this.cantidadPiezasCreadas++;
 		this.piezasCreadas.add(nEscultura);
 		this.cantidadEsculturasCreadas++;
@@ -165,9 +166,9 @@ public class Fabrica {
 	
 	public Fotografia crearFotografia(String titulo, int año, int valor, String lugar, String autores, boolean exhibida,
 			Comprador creador, String exhibaVendaoSubasta, int alto, int ancho, String formato, boolean enmarcado,
-			boolean consignacion, boolean dispsubasta, boolean dispventa, String fecha) {
+			boolean consignacion,  String fecha, boolean dispsubasta, boolean dispventa) {
 		Fotografia nFotografia  = new Fotografia(titulo, año, valor, lugar, autores, exhibida,
-				fecha, dispventa, creador, exhibaVendaoSubasta, alto, ancho, formato, enmarcado, consignacion, dispsubasta); 
+				 creador, exhibaVendaoSubasta, alto, ancho, formato, enmarcado, consignacion, fecha, dispsubasta, dispventa); 
 		this.cantidadPiezasCreadas++;
 		this.piezasCreadas.add(nFotografia);
 		this.cantidadFotografiasCreadas++;
@@ -177,7 +178,7 @@ public class Fabrica {
 	}
 	
 	public Impresion crearImpresion(String titulo, int año, int valor, String lugar, String autores, boolean exhibida,
-			Comprador creador, String exhibaVendaoSubasta, int ancho, int alto, boolean consignacion, boolean dispsubasta, boolean dispventa, String fecha ) {
+			Comprador creador, String exhibaVendaoSubasta, int ancho, int alto, boolean consignacion, String fecha, boolean dispsubasta, boolean dispventa) {
 		Impresion nImpresion  = new Impresion(titulo, año, valor, lugar, autores, exhibida,
 				creador,  exhibaVendaoSubasta, ancho, alto, consignacion, fecha, dispsubasta, dispventa); 
 		this.cantidadPiezasCreadas++;
@@ -189,9 +190,9 @@ public class Fabrica {
 	}
 	
 	public Pintura crearPintura(String titulo, int año, int valor, String lugar, String autores, boolean exhibida,
-			Comprador creador, String exhibaVendaoSubasta, int ancho, int alto, boolean consignacion, boolean dispsubasta,boolean dispventa, String fecha) {
-		Pintura nPintura  = new Pintura(titulo, año, valor, lugar, autores, exhibida, dispventa, fecha,
-				creador, exhibaVendaoSubasta, ancho, alto, consignacion, dispsubasta); 
+			Comprador creador, String exhibaVendaoSubasta, int ancho, int alto, boolean consignacion,  String fecha, boolean dispsubasta, boolean dispventa) {
+		Pintura nPintura  = new Pintura(titulo, año, valor, lugar, autores, exhibida,
+				creador, exhibaVendaoSubasta, ancho, alto, consignacion, fecha, dispsubasta, dispventa); 
 		this.cantidadPiezasCreadas++;
 		this.piezasCreadas.add(nPintura);
 		this.cantidadPinturasCreadas++;
@@ -202,9 +203,9 @@ public class Fabrica {
 	
 	public Video crearVideo(String titulo, int año, int valor, String lugar, String autores, boolean exhibida,
 			Comprador creador, String exhibaVendaoSubasta, int ancho, int alto,int duracion, String formato,
-			boolean consignacion, boolean dispsubasta, boolean dispventa, String fecha) {
+			boolean consignacion,  String fecha, boolean dispsubasta, boolean dispventa) {
 		Video nVideo  = new Video(titulo, año, valor, lugar, autores, exhibida,
-				 creador, exhibaVendaoSubasta, ancho, alto, duracion, formato, consignacion, dispsubasta, dispventa, fecha); 
+				 creador, exhibaVendaoSubasta, ancho, alto, duracion, formato, consignacion, fecha, dispsubasta, dispventa); 
 		this.cantidadPiezasCreadas++;
 		this.piezasCreadas.add(nVideo);
 		this.cantidadVideosCreados++;
@@ -343,5 +344,5 @@ public class Fabrica {
 	{
 			persistencia.cargarGaleria(archivo, galeria);
 	}
-
+	
 	}

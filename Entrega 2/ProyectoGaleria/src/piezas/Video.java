@@ -10,11 +10,11 @@ public class Video extends Pieza {
 	private int ancho;
 	private int duracion;
 	private String formato;
-	private String tipo= "Video";
+	private static final String tipo= "Video";
 	
 	public Video(String titulo, int año, int valor, String lugar, String autores, boolean exhibida,
 			Usuario propietario, String exhibaVendaoSubasta, int alto, int ancho,
-			int duracion, String formato, boolean consignacion, boolean dispsubasta, boolean dispventa, String fecha) {
+			int duracion, String formato, boolean consignacion, String fecha, boolean dispsubasta, boolean dispventa) {
 		super(titulo, año, valor, lugar, autores, exhibida, propietario, exhibaVendaoSubasta, consignacion, fecha, dispsubasta, dispventa);
 		this.alto = alto;
 		this.ancho = ancho;

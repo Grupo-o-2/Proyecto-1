@@ -14,7 +14,7 @@ import persistencia.*;
 
 public class Administrador extends Empleado{
 	
-	private String tipo = "Administrador";
+	private static final String tipo = "Administrador";
 
 	public Administrador(String login, String password, int telefono, String nombre) {
 		super(login, password, telefono, nombre);

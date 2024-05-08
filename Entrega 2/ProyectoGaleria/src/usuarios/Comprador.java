@@ -15,7 +15,7 @@ public class Comprador extends Usuario{
 	private int valorMaximoCompras;
 	private ArrayList<Pieza> historialPiezas;
 	private ArrayList<Pieza> piezasActuales;
-	private String tipo="Comprador";
+	private static final String tipo="Comprador";
 	
 	public Comprador(String login, String password,  String nombre, int valorMaximoCompras,
 			ArrayList<Pieza> historialPiezas, ArrayList<Pieza> piezasActuales, int dinero, int telefono) {

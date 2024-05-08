@@ -10,7 +10,7 @@ import exceptions.*;
 
 public class Cajero extends Empleado {
 	
-	private String tipo = "Cajero";
+	private static final String tipo = "Cajero";
 	
 	public Cajero(String login, String password, int telefono, String nombre) {
 		super(login, password, telefono, nombre);

@@ -6,10 +6,10 @@ import usuarios.*;
 public class Pintura extends Pieza{
 	private int alto;
 	private int ancho;
-	private String tipo = "Pintura";
+	private static final String tipo = "Pintura";
 	
-	public Pintura(String titulo, int año, int valor, String lugar, String autores, boolean exhibida, boolean dispventa, String fecha,
-			Usuario propietario, String exhibaVendaoSubasta, int alto, int ancho, boolean consignacion, boolean dispsubasta) {
+	public Pintura(String titulo, int año, int valor, String lugar, String autores, boolean exhibida,
+			Usuario propietario, String exhibaVendaoSubasta, int alto, int ancho, boolean consignacion, String fecha, boolean dispsubasta, boolean dispventa) {
 		super(titulo, año, valor, lugar, autores, exhibida, propietario, exhibaVendaoSubasta, consignacion,fecha, dispsubasta, dispventa);
 		this.alto = alto;
 		this.ancho = ancho;
